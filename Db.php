@@ -1,12 +1,12 @@
 <? 
     $dbhost="localhost";
-    $dbname="laba2";
+    $dbname="test";
     $username="root";
     $password="";
     $db= new PDO("mysql:host=$dbhost; dbname=$dbname",$username,$password);
-    
-    function get__teams()
-{
+
+
+    function get__teams(){
     global $db;
      $name_comp= $db->query("SELECT teams.name_teams,teams.info,organisation.name_organis,investors.name_invest,disciplines.name_disciplines
      FROM teams
@@ -15,11 +15,19 @@
      INNER JOIN disciplines on teams.id_disciplines=disciplines.id_disciplines
      ");
     return $name_comp;
+    }
 
-}
 
+    function get_result(){
+        global $db;
+        $name_result= $db->query("SELECT * FROM result");
+        return $name_result;
+    }
 
-$result=$_POST["data[]"];
-for($i=0;$i<count($result);$i++){
-    var_dump($result);
-}
+    function get_invest(){
+        global $db;
+        $name_result= $db->query("SELECT * FROM investors");
+        return $name_result;
+    }
+
+?>  
